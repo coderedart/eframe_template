@@ -13,9 +13,9 @@
     
     
     
-    
+
     <!-- manually specify the favicon path -->
-    <link rel="icon" href="favicon.ico"> 
+    <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#404040">
@@ -112,6 +112,17 @@
     <!-- The WASM code will resize the canvas dynamically -->
     <!-- the id is hardcoded in main.rs . so, make sure both match. -->
     <canvas id="the_canvas_id"></canvas>
+
+    <!--Register Service Worker-->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+
+    </script>
+
     <!-- <div class="centered" id="center_text">
         <p style="font-size:16px">
             Loading…
@@ -169,15 +180,6 @@
         }
     </script> -->
 
-    <!--Register Service Worker-->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js');
-            });
-        }
-
-    </script>
 
 
 
