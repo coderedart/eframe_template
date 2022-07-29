@@ -29,6 +29,8 @@ Change the name of the crate: Chose a good name for your project, and change the
     * Change the `'./eframe_template.js'` to `./your_crate.js` (in `filesToCache` array)
     * Change the `'./eframe_template_bg.wasm'` to `./your_crate_bg.wasm` (in `filesToCache` array)
 * Remove the web build of the old name: `rm docs/eframe_template*`
+* `index.html`
+    * Trunk uses the `index.html` at the project root. just change the `<title>`.
 
 ### Learning about egui
 
@@ -51,6 +53,7 @@ On Fedora Rawhide you need to run:
 `dnf install clang clang-devel clang-tools-extra speech-dispatcher-devel libxkbcommon-devel pkg-config openssl-devel libxcb-devel`
 
 For running the `build_web.sh` script you also need to install `jq` and `binaryen` with your packet manager of choice.
+In addition, to install Trunk, just run `cargo install --locked trunk`. 
 
 ### Compiling for the web
 
@@ -77,6 +80,17 @@ The finished web app is found in the `docs/` folder (this is so that you can eas
 * `your_crate.js`: Auto-generated binding between Rust and JS.
 
 You can test the template app at <https://emilk.github.io/eframe_template/>.
+
+### Using Trunk
+
+* Trunk uses `index.html` from the project folder and copies some files from `docs` folder into a new temporary folder called `dist`. 
+* `trunk serve` will build the app and host it on `http://127.0.0.1:8080`. no scripts or the need to edit any files. 
+* because of `docs/sw.js` script, the webpage will try to cache the app, so try force refreshing `Ctrl + F5` to force the webpage to pull in the new updated website.
+
+## Github Pages
+* `.github/workflows/pages.yml` will run on every commit and deploy the egui app to `gh-pages` branch of your repo.
+* you need to go to Respository -> Settings -> Pages -> Source -> set to `gh-pages` branch and `/` (root). this is a one time setup, otherwise, githug pages deployment won't work. and this will only be visible after the `pages.yml` workflow has run atleast once (initial commit is fine).
+
 
 ## Updating egui
 
